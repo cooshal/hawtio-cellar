@@ -1,0 +1,127 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>de.romeis.lab</groupId>
+    <artifactId>prs-cellar-plugin</artifactId>
+    <version>1.0.0</version>
+    <packaging>bundle</packaging>
+
+    <name>Karaf Cellar Plugin</name>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <plugin-domain />
+    </properties>
+
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/io.hawt/hawtio-plugin-mbean -->
+        <dependency>
+            <groupId>io.hawt</groupId>
+            <artifactId>hawtio-plugin-mbean</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+            <!-- <resource>
+                <directory>dist</directory>
+            </resource> -->
+        </resources>
+
+        <plugins>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <!-- defining this maven plugin in the same phase as the
+              maven-antrun-plugin but *after* we've configured the
+              maven-antrun-plugin ensures we filter resources *after*
+              we've discovered the plugin .js files. -->
+                        <id>copy-resources</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>resources</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.8</version>
+                <executions>
+                    <execution>
+                        <id>ng-build</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <mkdir dir="target"/>
+                                <echo message="Generating frontend resource"/>
+                                <exec executable="yarn.cmd">
+                                    <arg value="build"/>
+                                </exec>
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <version>3.3.0</version>
+                <inherited>true</inherited>
+                <extensions>true</extensions>
+                <webResources>
+                    <resource>
+                        <filtering>true</filtering>
+                        <directory>dist</directory>
+                        <includes>
+                            <include>**/*.*</include>
+                        </includes>
+                    </resource>
+                </webResources>
+                <configuration>
+                    <instructions>
+                        <WebApp-Context>/cellar</WebApp-Context>
+                        <Web-ContextPath>/cellar</Web-ContextPath>
+                        <Private-Package>*</Private-Package>
+                        <Include-Resource>{maven-resources}</Include-Resource>
+                        <!-- <Include-Resource>src/main/resources</Include-Resource> -->
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <configuration>
+                        <directory>dist</directory>
+                        <directory>target</directory>
+                        <Import-Package>
+                            org.osgi.service.blueprint.container,
+                            javax.management, *;resolution:=optional
+                        </Import-Package>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+</project>
