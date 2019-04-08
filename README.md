@@ -46,3 +46,4 @@ yarn start --sourcemap
 ```
 
 Do not use this flag when you are committing the compiled `.js` file, as it embeds source maps to the output file. Use this flag only during development.
+# hawtio-cellar
