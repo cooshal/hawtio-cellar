@@ -1,25 +1,8 @@
-# hawtio-jmx
+# hawtio-cellar-demo
 
-[![CircleCI](https://circleci.com/gh/hawtio/hawtio-jmx.svg?style=svg)](https://circleci.com/gh/hawtio/hawtio-jmx)
+This plugin provides Cellar for Hawtio.
 
-This plugin provides JMX for Hawtio.
-
-## Installation
-
-```
-yarn add @hawtio/jmx
-```
-
-## Set up development environment
-
-### Clone the repository
-
-```
-git clone https://github.com/hawtio/hawtio-jmx
-cd hawtio-jmx
-```
-
-### Install development tools
+## Install development tools
 
 * [Node.js](http://nodejs.org)
 * [Yarn](https://yarnpkg.com)
@@ -46,4 +29,3 @@ yarn start --sourcemap
 ```
 
 Do not use this flag when you are committing the compiled `.js` file, as it embeds source maps to the output file. Use this flag only during development.
-# hawtio-cellar
