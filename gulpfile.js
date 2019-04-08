@@ -25,11 +25,11 @@ const config = {
   logLevel: argv.debug ? logger.DEBUG : logger.INFO,
   less: ['plugins/**/*.less'],
   templates: ['plugins/**/*.html', 'plugins/**/*.md'],
-  templateModule: 'hawtio-jmx-templates',
+  templateModule: 'hawtio-cellar-templates',
   dist: argv.out || './dist/',
-  js: 'hawtio-jmx.js',
-  dts: 'hawtio-jmx.d.ts',
-  css: 'hawtio-jmx.css',
+  js: 'hawtio-cellar.js',
+  dts: 'hawtio-cellar.d.ts',
+  css: 'hawtio-cellar.css',
   sourceMap: argv.sourcemap,
 };
 

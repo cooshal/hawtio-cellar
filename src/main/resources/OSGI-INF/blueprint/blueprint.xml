@@ -3,9 +3,9 @@
 
   <bean id="plugin" class="io.hawt.web.plugin.HawtioPlugin" init-method="init" destroy-method="destroy">
     <property name="name" value="Karaf Cellar Plugin"/>
-    <property name="context" value="/hawtio/cellar"/>
+    <property name="context" value="/cellar"/>
     <property name="domain" value="${plugin-domain}"/>
-    <property name="scripts" value="hawtio-jmx.js"/>
+    <property name="scripts" value="hawtio-cellar.js"/>
   </bean>
 
 </blueprint>
