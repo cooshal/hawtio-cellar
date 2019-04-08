@@ -86,15 +86,6 @@
                 <version>3.3.0</version>
                 <inherited>true</inherited>
                 <extensions>true</extensions>
-                <webResources>
-                    <resource>
-                        <filtering>true</filtering>
-                        <directory>dist</directory>
-                        <includes>
-                            <include>**/*.*</include>
-                        </includes>
-                    </resource>
-                </webResources>
                 <configuration>
                     <instructions>
                         <WebApp-Context>/cellar</WebApp-Context>
