@@ -1,8 +1,8 @@
 {
   "name": "@hawtio/jmx",
   "version": "4.4.4",
-  "main": "dist/hawtio-jmx.js",
-  "types": "dist/hawtio-jmx.d.ts",
+  "main": "dist/hawtio-cellar.js",
+  "types": "dist/hawtio-cellar.d.ts",
   "files": [
     "dist"
   ],
